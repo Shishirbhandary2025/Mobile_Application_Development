@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>3 Button Cart</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+    }
+
+    .container {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    button {
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+    }
+
+    /* ADD TO BAG BUTTON */
+    .add-bag {
+      background-color: #8ef08e;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .add-bag .label {
+      font-weight: bold;
+    }
+
+    .add-bag span {
+      font-size: 18px;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    .add-bag button {
+      background: none;
+      border: none;
+      font-size: 22px;
+      color: green;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .wishlist {
+      background-color: white;
+      border: 2px solid black;
+    }
+
+    .sale {
+      background-color: #8ef08e;
+    }
+
+    h1 {
+      margin-top: 30px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- BUTTON 1: ADD TO BAG (TEXT + - INSIDE) -->
+    <div class="add-bag">
+      <span class="label">Add to Bag</span>
+      <button onclick="decrease()">−</button>
+      <span id="count">0</span>
+      <button onclick="increase()">+</button>
+    </div>
+
+    <!-- BUTTON 2: MOVE TO WISHLIST -->
+    <button class="wishlist" onclick="moveToWishlist()">
+      MOVE TO WISHLIST
+    </button>
+
+    <!-- BUTTON 3: ADD 1+1 SALE ITEM -->
+    <button class="sale" onclick="addSaleItem()">
+      Add 1+1 sale item
+    </button>
+
+  </div>
+
+  <h1 id="bagText">Your Bag has 0 items</h1>
+
+  <script>
+    let bagCount = 0;
+
+    function updateText() {
+      document.getElementById("count").innerText = bagCount;
+      document.getElementById("bagText").innerText =
+        "Your Bag has " + bagCount + " items";
+    }
+
+    function increase() {
+      bagCount++;
+      updateText();
+    }
+
+    function decrease() {
+      if (bagCount > 0) {
+        bagCount--;
+        updateText();
+      }
+    }
+
+    function moveToWishlist() {
+      if (bagCount > 0) {
+        bagCount--;
+        updateText();
+        alert("Item moved to wishlist");
+      }
+    }
+
+    function addSaleItem() {
+      bagCount += 2;
+      updateText();
+    }
+  </script>
+
+</body>
+</html>
